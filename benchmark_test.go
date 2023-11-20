@@ -23,3 +23,18 @@ func BenchmarkIterAndSeek(b *testing.B) {
 		iter.Release()
 	}
 }
+
+func BenchmarkCopy(b *testing.B) {
+	tree := NewBTreeGOptions(func(a, b int) bool {
+		return a < b
+	}, Options{
+		Degree: 4,
+	})
+	for i := 0; i < 10<<20; i++ {
+		tree.Set(i)
+	}
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		tree = tree.Copy()
+	}
+}
