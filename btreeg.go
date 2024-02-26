@@ -1134,7 +1134,7 @@ type IterG[T any] struct {
 	seeked  bool
 	atstart bool
 	atend   bool
-	stack0  [32]iterStackItemG[T]
+	stack0  [4]iterStackItemG[T]
 	stack   []iterStackItemG[T]
 	item    T
 }
